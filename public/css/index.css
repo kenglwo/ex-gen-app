@@ -1,0 +1,35 @@
+body {
+    margin: 30px;
+    background-color: oldlace;
+}
+.jumbotron {
+    margin-top: 25px;
+    padding: 32px;
+}
+h1 {
+    /* color: black; */
+    font-weight: bold;
+}
+h3#recipe_id {
+    color: dodgerblue;
+    font-weight: bold;
+}
+h3#texture {
+    color: coral;
+    font-weight: bold;
+}
+input[name^="recipe_id"] {
+    margin-bottom: 5px;
+}
+select {
+    width: 100px;
+    height: 30px;
+}
+button.bg-default {
+    background-color: coral;
+    color: white;
+}
+.card {
+    margin-bottom: 30px;
+}
+

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang='ja'>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+    <title><%= title %></title>
+
+    <link href="http://kento/ex-gen-app/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://kento/ex-gen-app/css/style.css" />
+
+    <script src="http://kento/ex-gen-app/js/jquery-3.3.1.min.js"></script>
+    <!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> -->
+    <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    <script src="http://kento/ex-gen-app/js/d3.layout.cloud.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.3.0/lodash.js"></script>
+    <!-- <script src="http://kento/ex-gen-app/js/texture_translation.js"></script> -->
+    <script src="http://kento/ex-gen-app/js/texture_translation_word.js"></script>
+    <script src="http://kento/ex-gen-app/js/popper.min.js"></script>
+    <script src="http://kento/ex-gen-app/js/bootstrap.min.js"></script>
+    <script src="http://kento/ex-gen-app/js/hello.js"></script>
+</head>
+
+<body>
+<div class="container-fluid">
+
+    <div class="row">
+        <div class="col-md-2">
+            <% // <div class="drop-area rounded"></div> %>
+        </div>
+
+        <div class="col-md-8">
+            <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+                <!-- <a class="navbar-brand" href="#">Ubunbun</a> -->
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="http://kento/ex-gen-app/">Home <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <form method="post" name="compareForm" id="compareForm" action="http://kento/ex-gen-app/compare">
+                                <button type="button" id="compareBtn" class="btn btn-success ml-5" disabled>比較</button>
+                            </form>
+                        </li>
+                    </ul>
+                    <form class="form-inline mt-2 mt-md-0">
+                        <%# <input class="form-control mr-sm-2" id='searchText' type="text" placeholder="Search" aria-label="Search"> %>
+                        <%# <button class="btn btn-outline-success my-2 my-sm-0" id="searchBtn" type="button">Search</button> %>
+                    </form>
+                </div>
+            </nav>
+        
+            <head>
+                <div class="jumbotron text-center alert-secondary">
+                    <h2><%= title %></h2>
+                    <h5><%= subtitle %></h5>
+                </div>
+            </head>
+
+            <div>
+                <%- content %>
+            </div>
+
+
+
+            <!-- <footer class="footer"> -->
+            <!--     <div class="container"> -->
+            <!--         <p class="text&#45;muted">Place sticky footer content here.</p> -->
+            <!--     </div> -->
+            <!-- </footer> -->
+
+        </div>
+
+    <div class="col-md-2">
+    
+        <%#  <div class="drop-area rounded"> %>
+        <div class="drop-area rounded">
+        
+            <%# <button type="button" id="compareBtn" class="btn btn-danger btn-lg">比較</button> %>
+
+        </div>
+
+    </div>
+
+</div> 
+
+    <nav>
+      <ul class="pagination justify-content-center">
+
+        <%- include('pagenation', {total_page: total_page, current_page: current_page, dish: dish, texture: texture}) %>
+
+      </ul>
+    </nav>
+
+</body>
+</html>

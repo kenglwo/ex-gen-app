@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang='ja'>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+    <title><%= title %></title>
+	<style type="text/css">
+		circle {
+			opacity: 0.8;
+			stroke-width: 2;
+			stroke : black;
+			fill : grey;
+		}
+		path {
+			opacity: 0.8;
+			stroke-width: 2;
+			stroke : blue;
+			fill : none;
+		}
+	</style>
+
+    <link href="http://localhost/~Kento012/ex-gen-app/public/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://localhost/~Kento012/ex-gen-app/public/css/overview.css" />
+
+    <script src="http://localhost/~Kento012/ex-gen-app/public/js/jquery-3.3.1.min.js"></script>
+    <!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> -->
+    <!-- <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.0/jquery-ui.min.js"></script> -->
+    <!-- <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script> -->
+    <!-- <script src="http://localhost/~Kento012/ex-gen-app/public/js/d3.layout.cloud.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.3.0/lodash.js"></script>
+    <script src="http://localhost/~Kento012/ex-gen-app/public/js/bootstrap.min.js"></script>
+    <!-- <script src="http://localhost/~Kento012/ex-gen-app/public/js/hello.js"></script> -->
+
+
+    <script src="https://d3js.org/d3.v5.min.js"></script>	 	 
+	<script src="https://d3js.org/d3-selection-multi.v1.min.js"></script>
+	<script src="https://d3js.org/d3-collection.v1.min.js"></script>
+	<script src="https://d3js.org/d3-hierarchy.v1.js"></script>
+	<!-- <script src="./d3-cluster-layout.js"></script> -->
+
+</head>
+
+<body>
+<div class="container-fluid">
+
+    <div class="row">
+        <div class="col-md-2"></div>
+
+        <div class="col-md-8">
+            <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+                <!-- <a class="navbar-brand" href="#">Ubunbun</a> -->
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="http://localhost:3000/">Home <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <form method="post" name="compareForm" id="compareForm" action="http://localhost:3000/compare">
+                                <button type="button" id="compareBtn" class="btn btn-success ml-5" disabled>比較</button>
+                            </form>
+                        </li>
+                    </ul>
+                    <form class="form-inline mt-2 mt-md-0">
+                        <%# <input class="form-control mr-sm-2" id='searchText' type="text" placeholder="Search" aria-label="Search"> %>
+                        <%# <button class="btn btn-outline-success my-2 my-sm-0" id="searchBtn" type="button">Search</button> %>
+                    </form>
+                </div>
+            </nav>
+        
+            <head>
+                <div class="jumbotron text-center alert-secondary">
+                    <h2><%= title %></h2>
+                    <h5><%= subtitle %></h5>
+                </div>
+            </head>
+
+
+			<div>
+				<% var dishname = JSON.stringify(dishname); %>
+				<% var texture =  JSON.stringify(texture); %>
+				<% var rootName =  texture + dishname; %>
+
+				<% var cluster_data = {"name": rootName}; %>
+				<% cluster_data["children"] = []; %>
+
+				<ol>
+					<% for (var key in content) { %>
+						<li><%- key %></li>
+						<% var current_cluster = {"name": key}; %>
+						<% current_cluster["children"] = []; %>
+						<ol>
+							<% content[key].forEach(function(recipe, key) { %>
+								<li><%= recipe.title %></li>
+								 <% var recipe_json = {"name": recipe.title}; %>
+								 <% current_cluster["children"].push(recipe_json); %>
+							<% }); %>
+						</ol>
+
+						<% cluster_data["children"].push(current_cluster); %>
+					<% }; %>
+				</ol>
+
+			</div>
+
+
+		<%# JSON.stringify(cluster_data) %>;
+
+        </div><!-- col-md-8 -->
+
+    <div class="col-md-2"></div>
+</div> 
+  <script>	 	 
+
+	function draw_cluster() {
+		var width = window.innerWidth;
+		var height = window.innerHeight;
+		var svg = d3.select("body")
+			.append("svg")
+			.attr("height", height)
+			.attr("width", width)
+			.append("g")
+			.attr("transform", "scale(0.8, 0.8)translate(100, 100)");
+
+
+		// var data = {
+		// 	"name": "texture/dishname",
+		// 	"children": [
+		// 		{ "name": "Cain" },
+		// 		{
+		// 			"name": "Seth",
+		// 			"children": [
+		// 				{ "name": "Enos" },
+		// 				{ "name": "Noam" }
+		// 			]
+		// 		},
+		// 		{ "name": "Abel" },
+		// 		{
+		// 			"name": "Awan",
+		// 			"children": [
+		// 				{ "name": "Enoch" }
+		// 			]
+		// 		},
+		// 		{ "name": "Azura" }
+		// 	]
+		// };
+
+		var data = <%- JSON.stringify(cluster_data); %>;
+
+		// see also:
+		// d3/d3-hierarchy: 2D layout algorithms for visualizing hierarchical data. 
+		// https://github.com/d3/d3-hierarchy
+		var root_node = d3.hierarchy(data);
+		console.log("root_node");
+		console.log(root_node);
+
+		var node_size = 20;
+		var cluster = d3.cluster()
+			.size([width, height]);
+		var nodes = cluster(root_node);
+		var links = nodes.links();
+		console.log("clustered nodes");
+		console.log(nodes);
+		console.log("clustered nodes (leaves)");
+		console.log(nodes.leaves());
+		console.log("clustered nodes (ancestors)"); // from root
+		console.log(nodes.ancestors());
+		console.log("clustered nodes (descendants)"); // from root
+		console.log(nodes.descendants());
+		console.log("clustered links");
+		console.log(links);
+
+		// path
+		// see also:
+		// d3/d3-shape: Graphical primitives for visualization, such as lines and areas. 
+		// https://github.com/d3/d3-shape
+		var line = d3.line()
+			.curve(d3.curveBundle.beta(0.85))
+			.x(function(d) { return d.x; })
+			.y(function(d) { return d.y; });
+		svg.selectAll("path")
+			.data(links)
+			.enter()
+			.append("path")
+			.attr("d", function(d) {
+					return line([
+						d.source,
+						{"x" : d.source.x, "y" : (d.source.y + d.target.y)/2 },
+						{"x" : d.target.x, "y" : (d.source.y + d.target.y)/2 },
+						d.target
+					]);
+				});
+
+		svg.selectAll("circle")
+			.data(nodes.descendants())
+			.enter()
+			.append("circle")
+			.attrs({
+				"cx" : function(d) { return d.x; },
+				"cy" : function(d) { return d.y; },
+				"r" : node_size/2
+			})
+			.append("title")
+			.text(function(d) { return d.data.name; });
+
+		svg.selectAll("text")
+			.data(nodes.descendants()).enter()
+			.append("text")
+			.attrs({
+				"dy" : node_size * 1.1,
+				"text-anchor" : "middle",
+				"x" : function(d) { return d.x; },
+				"y" : function(d) { return d.y; }
+			})
+			.text(function(d) { return d.data.name; } );
+	}
+
+	draw_cluster();
+
+  </script>	 	 
+</body>
+</html>

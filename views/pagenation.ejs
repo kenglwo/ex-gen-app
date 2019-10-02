@@ -1,0 +1,129 @@
+<% var create_disabled = function(label, arrow) { %>
+    <li class="page-item disabled">
+        <a class="page-link" href="#" aria-label=label>
+            <span aria-hidden="true"><%- arrow %></span><span class="sr-only">label</span>
+        </a>
+    </li>
+<% } %>
+
+<% var create_able = function(label, arrow) { %>
+    <li class="page-item">
+
+        <% if (label == "Previous") { %>
+            <a class="page-link rounded-left" id="btn-previous" href="" aria-label=label>
+                  <span aria-hidden="true"><%- arrow %></span><span class="sr-only">label</span>
+            </a>
+        <% } else { %>
+            <a class="page-link rounded-right" id="btn-next" href="" aria-label=label>
+                  <span aria-hidden="true"><%- arrow %></span><span class="sr-only">label</span>
+            </a>
+        <% } %>
+
+    </li>
+<% } %>
+
+<% var create_previous = function(c_index, t_index, label){ %>
+    <% var arrow = "&laquo;" %>
+    <% if (current_section == 0){ %>
+        <%# create_disabled(label, arrow) %>
+    <% } else { %>
+        <% create_able(label, arrow) %>
+    <% } %>
+<% } %>
+
+<% var create_next = function(c_index, t_index, label){ %>
+    <% var arrow = "&raquo;" %>
+    <% console.log("=======> current_section: " + current_section + ", total_section: " + total_section) %>
+    <% if (current_section == total_section - 1){ %>
+        <%# create_disabled(label, arrow) %>
+    <% } else { %>
+        <% create_able(label, arrow) %>
+    <% } %>
+<% } %>
+
+
+
+
+<%# ################################################################################ %>
+
+
+<%- create_previous(current_page, total_page, "Previous") -%>
+
+
+<% var total_section = Math.ceil(total_page / 5); %>
+
+<% var i = 0; %>
+<% i += current_section * 5; %>
+
+<% if (current_section != total_section - 1) { %> 
+
+    <% var end_index = i+5 %>
+    <% while (  i < end_index ) { %>
+        <% if (i+1 == current_page){ %>
+            <li class="page-item ml-0 active"><a class="page-link page-number" href=""><%- i+1 %></a></li>
+        <% } else { %>
+            <li class="page-item ml-0"><a class="page-link page-number" href=""><%- i+1 %></a></li>
+        <% } %>
+        <% i += 1 %>
+    <% } %>
+
+<% } else { %>
+
+    <% while (  i < total_page ) { %>
+        <% if (i+1 == current_page){ %>
+            <li class="page-item ml-0 active"><a class="page-link page-number" href=""><%- i+1 %></a></li>
+        <% } else { %>
+            <li class="page-item ml-0"><a class="page-link page-number" href=""><%- i+1 %></a></li>
+        <% } %>
+        <% i += 1 %>
+    <% } %>
+
+<% } %>
+
+
+
+<%- create_next(current_page, total_page, "Next") -%>
+
+<% var dish = "'" + dish + "'"; %>
+<% var texture = "'" + texture + "'"; %>
+
+<script>
+
+    var param_dish = <%- dish %>;
+    var param_texture = <%- texture %>;
+    var current_page = <%- current_page %>;
+    var current_section = <%- current_section %>;
+
+    $(function() {
+
+
+         $('a.page-number').each( (index, elem) => {
+
+             var page_number_offset = ( current_section * 5 ) + index;
+
+             $(elem).prop('href', '').prop('href', 'http://kento/ex-gen-app/wordcloud2');
+             const baselink = $(elem).prop('href');
+             $(elem).prop('href', baselink + '/?offset='+ page_number_offset + '&dish='+ param_dish + '&texture='+ param_texture);
+
+         });
+
+        if( $('a#btn-previous').length ){
+            var previous_offset =  ( current_section * 5 ) - 1;
+            $('a#btn-previous').prop('href', '').prop('href', 'http://kento/ex-gen-app/wordcloud2');
+            const baselink = $('a#btn-previous').prop('href');
+            $('a#btn-previous').prop('href', baselink + '/?offset='+ previous_offset + '&dish='+ param_dish + '&texture='+ param_texture );
+        }
+
+        if( $('a#btn-next').length ){
+
+            var next_offset = (current_section+1) * 5;
+
+            $('a#btn-next').prop('href', '').prop('href', 'http://kento/ex-gen-app/wordcloud2');
+            const baselink = $('a#btn-next').prop('href');
+            $('a#btn-next').prop('href', baselink + '/?offset='+next_offset + '&dish='+ param_dish + '&texture='+ param_texture );
+
+        }
+
+    });
+
+</script>

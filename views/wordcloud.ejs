@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title><%= title %></title>
+        <link type="text/css" href="./stylesheets/style.css" rel="stylesheet">
+        </style>
+        <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+        <!-- <script src="https://d3js.org/d3.v5.min.js"></script> -->
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js"
+            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+        <script src="./javascripts/d3.layout.cloud.js"></script>
+        <script src="https://d3js.org/d3-queue.v3.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.3.0/lodash.js"></script>
+    </head>
+    <body>
+        <div class="box29">
+            <svg id="recipe1"></svg>
+            <div class="box-title">簡単＊超濃厚チョコケーキ</div>
+        </div>
+
+        <div class="box29">
+            <svg id="recipe2"></svg>
+            <div class="box-title">しっとり濃厚◆生チョコケーキ</div>
+        </div>
+
+        <%- content %>
+
+        <script src="./javascripts/wordcloud-saved.js"></script>
+        <!-- <script src="js\wordcloud&#45;saved&#45;objective.js"></script> -->
+    </body>
+</html>

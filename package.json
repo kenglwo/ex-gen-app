@@ -1,0 +1,48 @@
+{
+  "name": "ex-gen-app",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www",
+    "eslint": "eslint --fix ./public/js/hello.js",
+    "prettier": "prettier ./public/js/hello.js --write"
+  },
+  "dependencies": {
+    "@babel/preset-react": "^7.0.0",
+    "acorn": "^6.1.1",
+    "aigle": "^1.14.0",
+    "async": "^2.6.1",
+    "body-parser": "^1.18.3",
+    "canvas": "^2.5.0",
+    "cookie-parser": "~1.4.3",
+    "d3": "^5.9.2",
+    "d3-cloud": "^1.2.5",
+    "debug": "~2.6.9",
+    "ejs": "~2.5.7",
+    "ejs-lint": "^0.3.0",
+    "express": "~4.16.0",
+    "express-jquery": "^1.8.3",
+    "express-session": "^1.16.2",
+    "http-errors": "~1.6.2",
+    "jquery": "^3.4.1",
+    "jsdom": "^12.0.0",
+    "lodash": "^4.17.11",
+    "mecab-async": "^0.1.2",
+    "morgan": "^1.9.1",
+    "nocache": "^2.1.0",
+    "pg": "^7.11.0",
+    "xml2js": "^0.4.19"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.4.5",
+    "eslint": "^5.16.0",
+    "eslint-config-prettier": "^4.3.0",
+    "eslint-plugin-node": "^8.0.1",
+    "eslint-plugin-prettier": "^3.1.0",
+    "fs-extra": "^7.0.1",
+    "prettier": "^1.16.4",
+    "prettier-eslint": "^8.8.2",
+    "prettier-eslint-cli": "^4.7.1",
+    "rotating-file-stream": "^1.4.1"
+  }
+}

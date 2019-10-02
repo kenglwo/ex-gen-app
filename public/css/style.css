@@ -1,0 +1,95 @@
+body {
+    margin: 0px;
+    background-color: oldlace;
+}
+
+.jumbotron {
+    margin-top: 25px;
+    padding: 32px;
+}
+
+h2 {
+    font-weight: bold;
+}
+
+svg {
+    width: 310px;
+    height: 310px;
+    float: left;
+}
+svg:hover {
+    cursor: pointer;
+}
+
+.col-sm-right {
+    padding-top: 10px;
+}
+
+
+.recipe_title {
+    color: #7D940A;
+    white-space: normal;
+    word-wrap: break-word;
+}
+.card {
+    margin-bottom: 50px;
+}
+.card-text {
+    width: 300px;
+    margin-bottom: 0px;
+    white-space: normal;
+    word-wrap: break-word;
+    color: brown;
+}
+
+.description, .advice{
+    /* width: 300px; */
+    /* margin-top: 30px; */
+    /* white-space: normal; */
+    /* word-wrap: break-word; */
+    color: black;
+}
+div.drop-area {
+    width: 200px;
+    height: 390px;
+    /* background-color: lightblue; */
+    position: fixed;
+    top: 210px;
+    margin-right: 10px;
+
+}
+input[type=checkbox] {
+     -moz-transform: scale( 2 , 2 );
+    -webkit-transform: scale( 2 , 2 );
+    float: left;
+    cursor: pointer;
+}
+label {
+    cursor: pointer;
+}
+/* button#compareBtn { */
+/*     margin-left: 250px; */
+/* } */
+
+
+@media screen and (max-width: 768px) {
+     .col-sm-8, .col-sm-5, .col-sm-2 {
+        padding-left: 0;
+        padding-right: 0;
+    }
+    .card-body{
+        padding: 8px;
+    }
+    .col-sm-right {
+        padding-top: 20px;
+    }
+	.recipe_title {
+		text-align: center;
+	}
+    svg, circle {
+        margin: 0 auto;
+    }
+    .card-text {
+        margin: 0px auto;
+    }
+}

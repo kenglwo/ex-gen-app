@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ja" class="h-100">
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content= "width=device-width, initial-scale=1">
+
+		<link href="css/bootstrap.min.css" rel="stylesheet" type= "text/css">
+		<link rel='stylesheet' href='css/visualize.css' type="text/css">
+
+		<script src="js/jquery-3.3.1.min.js" type="text/javascript"></script>
+		<script src="js/bootstrap.min.js" type="text/javascript"></script>
+
+		<title><%= title %></title>
+	</head>
+
+	<body class="container-fluid h-100"> 
+		<div class="row h-100 m-1">
+
+			<!-- Input Panel -->
+			<div class="col-md-2" style="background-color:snow">
+
+				<h5><span class="badge badge-secondary mt-2 mb-3 shadow">Input Panel</span></h5>
+
+				<form action="/visualize" method="post">
+					<!-- Dish Name -->
+					<div class="form-group">
+						<label for="dishName" class="font-weight-bold">Dish Name</label> <div class="input-group mb-4">
+							<input type="text" class="form-control" id="dishName" name="dishName" aria-describedby="basic-addon3">
+						</div>
+					</div>
+
+					<!-- Ingredients -->
+					<p><span class="font-weight-bold">Ingredients</span></p>
+
+						<!-- must -->
+						<div class="form-group">
+							<label for="mustIngre-url">must</label> <div class="input-group mb-2">
+								<input type="text" class="form-control" id="mustIngre" name="mustIngre" aria-describedby="basic-addon3">
+							</div>
+						</div>
+
+						<!-- optional -->
+						<div class="form-group">
+							<label for="optionalIngre">optional</label> <div class="input-group mb-2">
+								<input type="text" class="form-control" id="optionalIngre" name="optionalIngre" aria-describedby="basic-addon3">
+							</div>
+						</div>
+
+
+					<!-- exclusion -->
+					<div class="form-group">
+						<label for="excludeIngre">exclusion</label><div class="input-group mb-4">
+							<input type="text" class="form-control" id="excludeIngre" name="excludeIngre" aria-describedby="basic-addon3">
+						</div>
+					</div>
+
+
+					<!-- Basic Seasoning -->
+					<div class="form-group">
+						<label for="seasoning" class="font-weight-bold">Seasoning</label> <div class="input-group mb-4">
+							<input type="text" class="form-control" id="seasoning" name="seasoning" aria-describedby="basic-addon3">
+						</div>
+					</div>
+
+					<br>
+
+					<button type="submit" class="btn btn-primary d-block mx-auto w-100 shadow">Search</button>
+
+				</form>
+
+			</div>
+
+			<div class="col-md-5">
+
+				<!-- Dish Category -->
+				<div class="row h-50">
+					<div id="dish_category_left_container" class="col pr-0" style="background-color:#ffffea">
+						<h5><span class="badge badge-secondary mt-2 shadow">Dish Category</span></h5>
+
+						<div id='dish_category_left'>
+							<%- dish_category_left %>
+						</div>
+					</div>
+
+					<div id="dish_category_right_container" class="col pl-0" style="background-color:#ffffea">
+
+						<div id='dish_category_right' class='d-flex flex-column align-items-center'>
+							<%- dish_category_right %>
+						</div>
+
+					</div>
+				</div>
+
+				<!-- Remaining Ingredients -->
+				<div class="row h-50">
+
+					<div id="remain_ingre_left_container" class="col" style="background-color:#f4ffea">
+						<h5><span class="badge badge-secondary mt-2 shadow">Remaining Ingredients</span></h5>
+
+							<div id='remain_ingre_left' class='d-flex flex-column'>
+								<%- remain_ingre_left %>
+							</div>
+					</div>
+
+					<div id="remain_ingre_right_container" class="col" style="background-color:#f4ffea">
+							<div id='remain_ingre_rigth' class='d-flex flex-column align-items-center'>
+								<%- remain_ingre_right %>
+							</div>
+					</div>
+
+				</div>
+			</div>
+
+			<div class="col-md-5">
+			
+				<!-- Recipes -->
+				<div class="row h-50">
+					<div class="col" style="background-color:#eaffff">
+						<h5><span class="badge badge-secondary mt-2 shadow">Recipes</span></h5>
+					</div>
+				</div>
+
+				<div class="row h-50">
+
+					<!-- Recipe -->
+					<div class="col" style="background-color:#fff4ea">
+						<h5><span class="badge badge-secondary mt-2 shadow">Recipe</span></h5>
+						<img src="img/recipe.png" class="img-fluid">
+					</div>
+
+					<!-- Reviews -->
+					<div class="col" style="background-color:#fff4ea">
+						<h5><span class="badge badge-secondary mt-2 shadow">Reviews</span></h5>
+						<img src="img/reviews.png" class="img-fluid">
+					</div>
+				</div>
+			
+			
+			</div>
+
+		</div>
+
+	</body>
+</html>
